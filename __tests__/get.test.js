@@ -7,7 +7,7 @@ const app = require('../lib/app');
 const client = require('../lib/client');
 const ducks = require('../data/ducks.js');
 
-describe('app routes', () => {
+describe('get routes', () => {
   describe('routes', () => {
     let token;
 
