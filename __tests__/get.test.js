@@ -44,7 +44,7 @@ describe('get routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test('/GET duck/1 returns a single duck', async() => {
+    test('/GET ducks/1 returns a single duck', async() => {
 
       const expectation = {
         body_size: 'compact',
