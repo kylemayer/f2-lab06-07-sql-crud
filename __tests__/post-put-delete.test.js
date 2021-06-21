@@ -4,6 +4,7 @@ const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
 
+
 describe('post, put and delete routes', () => {
   describe('routes', () => {
     let token;
@@ -37,7 +38,7 @@ describe('post, put and delete routes', () => {
           name: 'new duck',
           mass_oz: 15,
           body_size: 'compact',
-          feet_color: 'orange',
+          feet_color: 'orange'
         })
         .expect('Content-Type', /json/)
         .expect(200);
@@ -48,12 +49,12 @@ describe('post, put and delete routes', () => {
         .expect(200);
 
       const newDuck = {
-        'name': 'new Duck',
-        'mass_oz': 15,
-        'id': 6,
-        'feet_color': 'orange',
-        'body_size': 'compact',
-        'owner_id': 1,
+        name: 'new duck',
+        mass_oz: 15,
+        id: 9,
+        feet_color: 'orange',
+        body_size: 'compact',
+        owner_id: 1
       };
 
       expect(data.body).toEqual(newDuck);
@@ -68,7 +69,7 @@ describe('post, put and delete routes', () => {
           name: 'updated duck',
           mass_oz: 5,
           body_size: 'compact',
-          feet_color: 'yellow',
+          feet_color: 'yellow'
         })
         .expect('Content-Type', /json/)
         .expect(200);
@@ -79,12 +80,12 @@ describe('post, put and delete routes', () => {
         .expect(200);
 
       const newDuck = {
-        'name': 'updated Duck',
-        'mass_oz': 5,
-        'id': 6,
-        'feet_color': 'yellow',
-        'body_size': 'compact',
-        'owner_id': 1,
+        name: 'updated duck',
+        mass_oz: 5,
+        id: 5,
+        feet_color: 'yellow',
+        body_size: 'compact',
+        owner_id: 1
       };
 
       expect(data.body).toEqual(newDuck);
@@ -104,12 +105,12 @@ describe('post, put and delete routes', () => {
         .expect(200);
 
       const newDuck = {
-        'name': 'updated Duck',
-        'mass_oz': 5,
-        'id': 6,
-        'feet_color': 'yellow',
-        'body_size': 'compact',
-        'owner_id': 1,
+        name: 'updated Duck',
+        mass_oz: 5,
+        id: 6,
+        feet_color: 'yellow',
+        body_size: 'compact',
+        owner_id: 1
       };
 
       expect(dataDucks.body).not.toContainEqual(newDuck);
