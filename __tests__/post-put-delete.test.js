@@ -3,7 +3,6 @@ const { execSync } = require('child_process');
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
-const { getCategoryIdByName } = require('../lib/utils.js');
 
 
 describe('post, put and delete routes', () => {
@@ -25,9 +24,6 @@ describe('post, put and delete routes', () => {
 
       token = signInData.body.token; // eslint-disable-line
 
-      const categoryData = await fakeRequest(app).get('/categories');
-      categories = categoryData.body;
-
       return done();
     });
 
@@ -36,8 +32,6 @@ describe('post, put and delete routes', () => {
     });
 
     test('/POST ducks creates a single duck', async() => {
-
-      const categoryId = getCategoryIdByName(categories, 'compact');
 
       const data = await fakeRequest(app)
         .post('/ducks')
