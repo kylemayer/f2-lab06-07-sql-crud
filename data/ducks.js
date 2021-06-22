@@ -53,7 +53,7 @@ module.exports = [
     mass_oz: 15,
     category: 'compact',
     feet_color: 'yellow',
-    owner_id: 1,
+    owner_id: 1
   },
   {
     name: 'Mandarin Duck',

@@ -27,7 +27,7 @@ async function run() {
               id SERIAL PRIMARY KEY NOT NULL,
               name VARCHAR(512) NOT NULL,
               mass_oz INTEGER NOT NULL,
-              body_size VARCHAR(512) NOT NULL,
+              feet_color VARCHAR(512) NOT NULL,
               category_id INTEGER NOT NULL REFERENCES categories(id),
               owner_id INTEGER NOT NULL REFERENCES users(id)
             );
