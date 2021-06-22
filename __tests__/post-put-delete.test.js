@@ -3,11 +3,13 @@ const { execSync } = require('child_process');
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
+const { getCategoryIdByName } = require('../lib/utils.js');
 
 
 describe('post, put and delete routes', () => {
   describe('routes', () => {
     let token;
+    let categories;
 
     beforeAll(async done => {
       execSync('npm run setup-db');
@@ -23,6 +25,9 @@ describe('post, put and delete routes', () => {
 
       token = signInData.body.token; // eslint-disable-line
 
+      const categoryData = await fakeRequest(app).get('/categories');
+      categories = categoryData.body;
+
       return done();
     });
 
@@ -32,12 +37,14 @@ describe('post, put and delete routes', () => {
 
     test('/POST ducks creates a single duck', async() => {
 
+      const categoryId = getCategoryIdByName(categories, 'compact');
+
       const data = await fakeRequest(app)
         .post('/ducks')
         .send({
           name: 'new duck',
           mass_oz: 15,
-          body_size: 'compact',
+          category_id: categoryId,
           feet_color: 'orange'
         })
         .expect('Content-Type', /json/)
@@ -53,7 +60,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 15,
         id: 9,
         feet_color: 'orange',
-        body_size: 'compact',
+        category_id: categoryId,
         owner_id: 1
       };
 
@@ -63,12 +70,14 @@ describe('post, put and delete routes', () => {
 
     test('/PUT ducks updates a single duck', async() => {
 
+      const categoryId = getCategoryIdByName(categories, 'tiny');
+
       const data = await fakeRequest(app)
         .put('/ducks/5')
         .send({
           name: 'updated duck',
           mass_oz: 5,
-          body_size: 'compact',
+          category_id: categoryId,
           feet_color: 'yellow'
         })
         .expect('Content-Type', /json/)
@@ -84,7 +93,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 5,
         id: 5,
         feet_color: 'yellow',
-        body_size: 'compact',
+        category_id: categoryId,
         owner_id: 1
       };
 
@@ -109,7 +118,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 5,
         id: 6,
         feet_color: 'yellow',
-        body_size: 'compact',
+        category_id: 'compact',
         owner_id: 1
       };
 

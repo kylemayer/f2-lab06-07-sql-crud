@@ -47,7 +47,7 @@ describe('get routes', () => {
     test('/GET ducks/1 returns a single duck', async() => {
 
       const expectation = {
-        body_size: 'compact',
+        category: 'compact',
         feet_color: 'orange',
         id: 1,
         mass_oz: 14,
@@ -62,5 +62,16 @@ describe('get routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
+
+    test('/GET categories returns all duck categories', async() => {
+
+      const data = await fakeRequest(app)
+        .get('/categories')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body.length).toBeGreaterThan(0);
+    });
+
   });
 });
