@@ -56,7 +56,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 15,
         id: 9,
         feet_color: 'orange',
-        category_id: 'new duck',
+        category_id: 'compact',
         owner_id: 1
       };
 
@@ -99,7 +99,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 5,
         id: 5,
         feet_color: 'yellow',
-        category_id: 'updated duck',
+        category_id: 'compact',
         owner_id: 1
       };
 

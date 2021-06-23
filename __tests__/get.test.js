@@ -40,7 +40,7 @@ describe('get routes', () => {
           name: 'Wood Duck',
           feet_color: 'yellow',
           mass_oz: 15,
-          category_id: 'Wood Duck',
+          category_id: 'compact',
           owner_id: 1
         },
         {
@@ -48,7 +48,7 @@ describe('get routes', () => {
           name: 'Bufflehead Duck',
           feet_color: 'orange',
           mass_oz: 14,
-          category_id: 'Bufflehead Duck',
+          category_id: 'compact',
           owner_id: 1
         },
         {
@@ -56,7 +56,7 @@ describe('get routes', () => {
           name: 'Mandarin Duck',
           feet_color: 'brown',
           mass_oz: 25,
-          category_id: 'Mandarin Duck',
+          category_id: 'medium',
           owner_id: 1
         },
         {
@@ -64,7 +64,7 @@ describe('get routes', () => {
           name: 'Redhead Duck',
           feet_color: 'brown',
           mass_oz: 35,
-          category_id: 'Redhead Duck',
+          category_id: 'medium',
           owner_id: 1
         },
         {
@@ -72,7 +72,7 @@ describe('get routes', () => {
           name: 'Hooded Merganser Duck',
           feet_color: 'brown',
           mass_oz: 25,
-          category_id: 'Hooded Merganser Duck',
+          category_id: 'medium',
           owner_id: 1
         },
         {
@@ -80,7 +80,7 @@ describe('get routes', () => {
           name: 'Harlequin Duck',
           feet_color: 'brown',
           mass_oz: 20,
-          category_id: 'Harlequin Duck',
+          category_id: 'medium',
           owner_id: 1
         },
         {
@@ -88,7 +88,7 @@ describe('get routes', () => {
           name: 'Mallard Duck',
           feet_color: 'orange',
           mass_oz: 50,
-          category_id: 'Mallard Duck',
+          category_id: 'large',
           owner_id: 1
         },
         {
@@ -96,7 +96,7 @@ describe('get routes', () => {
           name: 'Muscovy Duck',
           feet_color: 'yellow',
           mass_oz: 180,
-          category_id: 'Muscovy Duck',
+          category_id: 'giant',
           owner_id: 1
         }
       ];
@@ -112,7 +112,7 @@ describe('get routes', () => {
     test('/GET ducks/1 returns a single duck', async() => {
 
       const expectation = {
-        category_id: 'Bufflehead Duck',
+        category_id: 'compact',
         feet_color: 'orange',
         id: 1,
         mass_oz: 14,

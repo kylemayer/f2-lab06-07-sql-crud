@@ -45,7 +45,7 @@ async function run() {
     await Promise.all(
       ducks.map(duck => {
         const matchedCategory = getCategoryIdByName(categories, duck.category_id);
-
+        console.log(matchedCategory, 'this is log');
         return client.query(`
           INSERT INTO ducks (name, mass_oz, category_id, feet_color, owner_id)
           VALUES ($1, $2, $3, $4, $5);
