@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
-
+const { getCategoryIdByName } = require('../lib/utils.js');
 
 describe('post, put and delete routes', () => {
   describe('routes', () => {
@@ -24,6 +24,8 @@ describe('post, put and delete routes', () => {
 
       token = signInData.body.token; // eslint-disable-line
 
+      const categoryData = await fakeRequest(app).get('/categories');
+      categories = categoryData.body;
       return done();
     });
 
@@ -32,7 +34,7 @@ describe('post, put and delete routes', () => {
     });
 
     test('/POST ducks creates a single duck', async() => {
-
+      const categoryId = getCategoryIdByName(categories, 'compact');
       const data = await fakeRequest(app)
         .post('/ducks')
         .send({
@@ -54,18 +56,28 @@ describe('post, put and delete routes', () => {
         mass_oz: 15,
         id: 9,
         feet_color: 'orange',
+        category_id: 'new duck',
+        owner_id: 1
+      };
+
+      const postedNewDuck = {
+        name: 'new duck',
+        mass_oz: 15,
+        id: 9,
+        feet_color: 'orange',
         category_id: categoryId,
         owner_id: 1
       };
 
-      expect(data.body).toEqual(newDuck);
-      expect(dataDucks.body).toContainEqual(newDuck);
+      expect(data.body).toEqual(postedNewDuck);
+      const matchingDuck = dataDucks.body.find(duck =>{
+        return duck.feet_color === 'orange';
+      });
+      expect(matchingDuck).toEqual(newDuck);
     });
 
     test('/PUT ducks updates a single duck', async() => {
-
-      const categoryId = getCategoryIdByName(categories, 'tiny');
-
+      const categoryId = getCategoryIdByName(categories, 'compact');
       const data = await fakeRequest(app)
         .put('/ducks/5')
         .send({
@@ -87,12 +99,24 @@ describe('post, put and delete routes', () => {
         mass_oz: 5,
         id: 5,
         feet_color: 'yellow',
+        category_id: 'updated duck',
+        owner_id: 1
+      };
+
+      const putNewDuck = {
+        name: 'updated duck',
+        mass_oz: 5,
+        id: 5,
+        feet_color: 'yellow',
         category_id: categoryId,
         owner_id: 1
       };
 
-      expect(data.body).toEqual(newDuck);
-      expect(dataDucks.body).toContainEqual(newDuck);
+      expect(data.body).toEqual(putNewDuck);
+      const matchingDuck = dataDucks.body.find(duck =>{
+        return duck.feet_color === 'yellow';
+      });
+      expect(matchingDuck).toEqual(newDuck);
     });
 
     test('/DELETE ducks deletes a single duck', async() => {
@@ -112,7 +136,7 @@ describe('post, put and delete routes', () => {
         mass_oz: 5,
         id: 6,
         feet_color: 'yellow',
-        category_id: 'compact',
+        category_id: 2,
         owner_id: 1
       };
 
