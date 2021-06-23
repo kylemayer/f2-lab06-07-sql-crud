@@ -33,7 +33,7 @@ async function run() {
             );
         `);
 
-    console.log('create tables complete', getEmoji(), getEmoji(), getEmoji());
+    console.log('create tables complete!', getEmoji(), getEmoji(), getEmoji());
   }
   catch(err) {
     // problem? let's see the error...
